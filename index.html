@@ -7,108 +7,194 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
-.w3-row-padding img {margin-bottom: 12px}
-/* Set the width of the sidebar to 120px */
-.w3-sidebar {width: 120px; background: black}
-/* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
-#main {margin-left: 120px}
-/* Remove margins from "page content" on small screens */
-@media only screen and (max-width: 600px) {#main {margin-left: 0}}
-  body {
-
-    background: rgb(0,0,0);
-    background: -moz-linear-gradient(0deg, rgba(0,0,0,1) 27%, rgba(2,30,93,1) 87%);
-    background: -webkit-linear-gradient(0deg, rgba(0,0,0,1) 27%, rgba(2,30,93,1) 87%);
-    background: linear-gradient(0deg, rgba(0,0,0,1) 27%, rgba(2,30,93,1) 87%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#021e5d",GradientType=1);
-
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Montserrat", sans-serif
   }
 
+  .w3-row-padding img {
+    margin-bottom: 12px
+  }
 
+  /* Set the width of the sidebar to 120px */
+  .w3-sidebar {
+    width: 120px;
+    background: black
+  }
+
+  /* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
+  #main {
+    margin-left: 120px
+  }
+
+  /* Remove margins from "page content" on small screens */
+  @media only screen and (max-width: 600px) {
+    #main {
+      margin-left: 0
+    }
+  }
+
+  body {
+
+    background: rgb(0, 0, 0);
+    background: -moz-linear-gradient(0deg, rgba(0, 0, 0, 1) 27%, rgba(2, 30, 93, 1) 87%);
+    background: -webkit-linear-gradient(0deg, rgba(0, 0, 0, 1) 27%, rgba(2, 30, 93, 1) 87%);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 27%, rgba(2, 30, 93, 1) 87%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000", endColorstr="#021e5d", GradientType=1);
+
+  }
 </style>
+
 <body class="w3-black">
 
-<!-- Icon Bar (Sidebar - hidden on small screens) -->
-<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
-  <a href="#" class="w3-bar-item w3-button w3-padding-large w3-black">
-    <i class="fa fa-home w3-xxlarge"></i>
-    <p>HOME</p>
-  </a>
-  <a href="#about" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
-    <i class="fa fa-user w3-xxlarge"></i>
-    <p>ABOUT</p>
-  </a>
-</nav>
+  <!-- Icon Bar (Sidebar - hidden on small screens) -->
+  <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-black  w3-hover-grey">
+      <i class="fa fa-home w3-xxlarge"></i>
+      <p>HOME</p>
+    </a>
+    <a href="#about" class="w3-bar-item w3-button w3-padding-large w3-hover-grey">
+      <i class="fa fa-user w3-xxlarge"></i>
+      <p>ABOUT</p>
+    </a>
+    <a href="#projects" class="w3-bar-item w3-button w3-padding-large w3-hover-grey">
+      <i class="fa fa-book w3-xxlarge"></i>
+      <p>Projects</p>
+    </a>
 
-<!-- Navbar on small screens (Hidden on medium and large screens) -->
-<div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
-  <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
-    <a href="#" class="w3-bar-item w3-button" style="width:25% !important">HOME</a>
-    <a href="#about" class="w3-bar-item w3-button" style="width:25% !important">ABOUT</a>
+  </nav>
+
+  <!-- Navbar on small screens (Hidden on medium and large screens) -->
+  <div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
+    <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
+      <a href="#home" class="w3-bar-item w3-button" style="width:25% !important">HOME</a>
+      <a href="#about" class="w3-bar-item w3-button" style="width:25% !important">ABOUT</a>
+      <a href="#projects" class="w3-bar-item w3-button" style="width:25% !important">PROJECTS</a>
+    </div>
   </div>
-</div>
 
-<!-- Page Content -->
-<div class="w3-padding-large" id="main">
-  
-  <!-- Header/Home -->
-  <header class="w3-container w3-padding-32 w3-center" id="home">
-    <h1 class="w3-jumbo"><span class="w3-hide-small">Hi, I'm</span> Abrar Jawad Tarafder.</h1>
-    <p>A Computer Science Student in Toronto, Ontario</p>
-    <img src="Toronto Skyline.jpg" class="w3-image" width="992" height="1508">
-  </header>
+  <!-- Page Content -->
+  <div class="w3-padding-large" id="main">
 
-  <!-- About Section -->
-  <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="about">
-    <h2 class="w3-text-white">About Me</h2>
-    <hr style="width:200px" class="w3-white">
-    <p style="color: white">
-      Hello, I'm Abrar Jawad Tarafder, a Computer Science student studying at York University. I have made this short portfolio to provide easy access to my Resume, my personal website, my wix website and my github for projects! Feel free to check them out!
-    </p>
-   
+    <!-- Header/Home -->
+    <header class="w3-container w3-padding-32 w3-center" id="home">
+      <h1 class="w3-jumbo"><span class="w3-hide-small">Hi, I'm</span> Abrar Jawad Tarafder.</h1>
+      <p>A Computer Science Student in Toronto, Ontario</p>
+      <img src="Toronto Skyline.jpg" class="w3-image" width="992" height="1508">
+    </header>
 
-    <button style="background-color: blueviolet;" class="w3-button w3-light-grey w3-padding-large w3-section">
-      <a href="Resume_Abrar_Tech.pdf" style="color: black; text-decoration: none;">
-        <i class="fa fa-download"></i> Download Resume
-      </a>
-    </button>
-    
-    <button class="w3-button w3-light-grey w3-padding-large w3-section">
-      <a href="https://abrart1075.wixsite.com/my-site" style="color: black; text-decoration: none;">
-        <i class="fa fa-globe"></i> Personal Wix Website
-      </a>
-    </button>
-    
-    <button class="w3-button w3-light-grey w3-padding-large w3-section">
-      <a href="https://abrartarafder.github.io/" style="color: black; text-decoration: none;">
-        <i class="fa fa-globe"></i> Personal Website
-      </a>
-    </button>
-    
-    <button class="w3-button w3-light-grey w3-padding-large w3-section">
-      <a href="https://github.com/abrartarafder" style="color: black; text-decoration: none;">
-        <i class="fa fa-github"></i>  Github for Projects
-      </a>
-    </button>
+    <!-- About Section -->
+    <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="about">
+      <h2 class="w3-text-white">About Me</h2>
+      <hr style="width:200px" class="w3-white">
+      <p style="color: white">
+        Hello, I'm Abrar Jawad Tarafder, a Computer Science student studying at York University. I have made this short
+        portfolio to provide easy access to my Resume, my personal website, my wix website and my github for projects!
+        Feel free to check them out!
+      </p>
 
-  <!-- End About Section -->
-  </div>
-  
+
+      <button style="background-color: blueviolet;" class="w3-button w3-light-grey w3-padding-large w3-section">
+        <a href="Resume_Abrar_Tech.pdf" style="color: black; text-decoration: none;">
+          <i class="fa fa-download"></i> Download Resume
+        </a>
+      </button>
+
+      <button class="w3-button w3-light-grey w3-padding-large w3-section">
+        <a href="https://abrart1075.wixsite.com/my-site" style="color: black; text-decoration: none;">
+          <i class="fa fa-globe"></i> Personal Wix Website
+        </a>
+      </button>
+
+      <button class="w3-button w3-light-grey w3-padding-large w3-section">
+        <a href="https://abrartarafder.github.io/" style="color: black; text-decoration: none;">
+          <i class="fa fa-globe"></i> Personal Website
+        </a>
+      </button>
+
+      <button class="w3-button w3-light-grey w3-padding-large w3-section">
+        <a href="https://github.com/abrartarafder" style="color: black; text-decoration: none;">
+          <i class="fa fa-github"></i> Github for Projects
+        </a>
+      </button>
+
+      <!-- End About Section -->
+    </div>
+
+    <!-- ProjectSection -->
+    <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="projects">
+      <h2 class="w3-text-white">Projects</h2>
+      <hr style="width:200px" class="w3-white">
+
+      <h3 class="w3-text-white">Data Analytics and Databases</h2>
+        <p style="color: white">
+          I completed Google's Data Analytics course with Coursera and have completed a project that includes Excel, SQL
+          and other tools. I am planning on enrolling in other certifications courses as well. Check it out on my Github!
+        </p>
+        <h3 class="w3-text-white">Game Development</h2>
+          <p style="color: white">
+            I have been working on making some 2d games as a hobby and am just getting started with some basic games and
+            more. Check it out on my Github!
+          </p>
+          <h3 class="w3-text-white">Frontend, Web Development and Design</h2>
+            <p style="color: white">
+              I am currently learning frontend web development and design since my current job requires me to have
+              that skill and have made this portfolio as well as my personal website. The wix website that I made was
+              part of web-design as well as some Figma work. See my websites links above!
+            </p>
+            <h3 class="w3-text-white">Hackathons</h2>
+              <p style="color: white">
+
+                I have attended 3 hackathons (one-conjoint) to date and have worked with some amazing people where we
+                made a flight tracker app and a password-storage app. Check them out!
+
+              </p>
+              <button class="w3-button w3-light-grey w3-padding-large w3-section">
+                <a href="https://devpost.com/abrart1075?ref_content=user-portfolio&ref_feature=portfolio&ref_medium=global-nav"
+                  style="color: black; text-decoration: none;">
+                  Projects
+                </a>
+              </button>
+              <h3 class="w3-text-white">Backend and MERN Stack (includes Beginner Projects)</h2>
+                <p style="color: white">
+                  I have worked on some smaller beginner projects to learn new languages (ie -- calculators and such)
+                  and have also been trying to learn the MERN stack. Check them out on my Github!
+                </p>
+                <h3 class="w3-text-white">Marketing Certifications</h2>
+                  <p style="color: white">
+                    I worked as a digital marketer for a couple of months and I had gotten my role through some
+                    certifications that are up on my LinkedIn. I personally believe the more you learn, the better!
+                  </p>
+                  <h3 class="w3-text-white">Machine Learning and AI</h2>
+                    <p style="color: white">
+                      Will be working towards making some projects regarding this soon!
+                    </p>
+
+
+
+
+                    <!-- End About Section -->
+    </div>
+
 
     <!-- Footer -->
-  <footer class="w3-content w3-padding-64 w3-text-blue w3-xlarge">
-    <a href="https://twitter.com/abrart1075"><i class="fa fa-twitter w3-hover-opacity"></i></a>
+    <footer class="w3-content w3-padding-64 w3-text-blue w3-xlarge">
+      <a href="https://twitter.com/abrart1075"><i class="fa fa-twitter w3-hover-opacity"></i></a>
 
-    <a href="https://www.linkedin.com/in/abrar-tarafder/"><i class="fa fa-linkedin w3-hover-opacity"></i></a>
-    
-    <a href="mailto:abrart1075@gmail.com"><i class="fa fa-envelope w3-hover-opacity"></i></a>
-    
-  <!-- End footer -->
-  </footer>
+      <a href="https://www.linkedin.com/in/abrar-tarafder/"><i class="fa fa-linkedin w3-hover-opacity"></i></a>
 
-<!-- END PAGE CONTENT -->
-</div>
+      <a href="mailto:abrart1075@gmail.com"><i class="fa fa-envelope w3-hover-opacity"></i></a>
+
+      <!-- End footer -->
+    </footer>
+    <!-- END PAGE CONTENT -->
+  </div>
 
 </body>
+
 </html>
