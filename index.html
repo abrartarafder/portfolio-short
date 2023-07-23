@@ -52,33 +52,60 @@
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000", endColorstr="#021e5d", GradientType=1);
 
   }
+    .clock {
+      font-size: 18px;
+    }
 </style>
 
 <body class="w3-black">
 
   <!-- Icon Bar (Sidebar - hidden on small screens) -->
+ 
   <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
-    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-black  w3-hover-grey">
+    <p class="clock" style="margin-top: 30px; margin-bottom: 30px; color:#0339ad;">Loading...</p>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-black w3-hover-0339ad">
       <i class="fa fa-home w3-xxlarge"></i>
       <p>HOME</p>
     </a>
-    <a href="#about" class="w3-bar-item w3-button w3-padding-large w3-hover-grey">
+    <a href="#about" class="w3-bar-item w3-button w3-padding-large w3-hover-0339ad">
       <i class="fa fa-user w3-xxlarge"></i>
       <p>ABOUT</p>
     </a>
-    <a href="#projects" class="w3-bar-item w3-button w3-padding-large w3-hover-grey">
+    <a href="#projects" class="w3-bar-item w3-button w3-padding-large w3-hover-0339ad">
       <i class="fa fa-book w3-xxlarge"></i>
       <p>PROJECTS</p>
     </a>
-
+    <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hover-0339ad">
+      <i class="fa fa-phone w3-xxlarge"></i>
+      <p>CONTACT</p>
+    </a>
   </nav>
+  <!-- clock -->
+  <script>
+    function updateClock() {
+      const now = new Date();
+      let hours = now.getHours();
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      let amOrPm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12 || 12;
+      const timeString = `${hours}:${minutes} ${amOrPm}`;
+      document.querySelector('.clock').textContent = timeString;
+    }
 
+    // Call the updateClock function every minute (60000 milliseconds)
+    setInterval(updateClock, 60000);
+
+    // Update the clock immediately after the page loads
+    updateClock();
+  </script>
+  
   <!-- Navbar on small screens (Hidden on medium and large screens) -->
   <div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
     <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
       <a href="#home" class="w3-bar-item w3-button" style="width:25% !important">HOME</a>
       <a href="#about" class="w3-bar-item w3-button" style="width:25% !important">ABOUT</a>
       <a href="#projects" class="w3-bar-item w3-button" style="width:25% !important">PROJECTS</a>
+      <a href="#contact" class="w3-bar-item w3-button" style="width:25% !important">CONTACT</a>
     </div>
   </div>
 
@@ -99,7 +126,7 @@
       <p style="color: white">
         Hello, I'm Abrar Jawad Tarafder, a Computer Science student studying at York University. I have made this short
         portfolio to provide easy access to my Resume, my personal website, my wix website and my github for projects!
-        Feel free to check them out! Also if you'd like to gain more insight into the different types of projects I am working on, feel free to check out the Project Summary section! 
+        Feel free to check them out! Also if you'd like to gain more insight into the different types of projects I am working on, feel free to check out the Project Summary section! Feel free to contact me for any inquiries / questions!
       </p>
 
 
@@ -244,15 +271,29 @@
                       <!-- End Projecy Section -->
     </div>
 
+    <div class="w3-padding-64 w3-content w3-text-grey" id="contact">
+      <h2 class="w3-text-light-grey">Contact Me</h2>
+      <hr style="width:200px" class="w3-opacity">
+  
+      <div class="w3-section">
+        <a href="https://twitter.com/abrart1075"><i class="fa fa-twitter w3-xxlarge w3-hover-opacity" style="margin-right: 10px; color:#0339ad;"></i></a>
+
+        <a href="https://www.linkedin.com/in/abrar-tarafder/"><i class="fa fa-linkedin  w3-xxlarge w3-hover-opacity" style="margin-right: 10px; color:#0339ad;"></i></a>
+  
+        <a href="mailto:abrart1075@gmail.com"><i class="fa  w3-xxlarge fa-envelope w3-hover-opacity" style="margin-right: 10px; color:#0339ad;"></i></a>
+      </div><br>
+
+  
+      
+    </div>
+
+   
+    
+
 
     <!-- Footer -->
-    <footer class="w3-content w3-padding-64 w3-text-blue w3-xlarge">
-      <a href="https://twitter.com/abrart1075"><i class="fa fa-twitter w3-hover-opacity"></i></a>
-
-      <a href="https://www.linkedin.com/in/abrar-tarafder/"><i class="fa fa-linkedin w3-hover-opacity"></i></a>
-
-      <a href="mailto:abrart1075@gmail.com"><i class="fa fa-envelope w3-hover-opacity"></i></a>
-
+    <footer>
+   
       <!-- End footer -->
     </footer>
     <!-- END PAGE CONTENT -->
