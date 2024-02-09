@@ -1,7 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Abrar Portfolio Website</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+
+  <!-- Google Fonts -->
+  <link
+  
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-GKIQclzjpFBrmh9pFxJwLXe5e4InKOQal4nPt9f3k8y0rfZ69tW97fNtxD/+cYx9HjD1Ou3SAlhsl3w/UudIMQ==" crossorigin="anonymous" />
+
+    <link rel="icon" href="assets/img/h.png" type="image/x-icon">
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
@@ -13,376 +37,296 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
     crossorigin="anonymous"></script>
-  <link rel="icon" href="assets/img/favicon-16x16.png" type="image/x-icon">
-  <title>Abrar portfolio</title>
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
 </head>
-<style>
-  body,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: "Montserrat", sans-serif
-  }
 
-  .w3-row-padding img {
-    margin-bottom: 12px
-  }
+<body>
 
-  /* Set the width of the sidebar to 120px */
-  .w3-sidebar {
-    width: 120px;
-    background: black
-  }
+  <!-- ======= Mobile nav toggle button ======= -->
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
 
-  /* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
-  #main {
-    margin-left: 120px
-  }
+  <!-- ======= Header ======= -->
+  <header id="header" style="background-color: black;">
+    <div class="d-flex flex-column">
 
-  /* Remove margins from "page content" on small screens */
-  @media only screen and (max-width: 600px) {
-    #main {
-      margin-left: 0
-    }
-  }
+      <div class="profile">
+        <div class="social-links mt-3 text-center">
+        </div>
+      </div>
 
-  body {
-
-    background: rgb(0, 0, 0);
-    background: -moz-linear-gradient(0deg, rgba(0, 0, 0, 1) 27%, rgba(2, 30, 93, 1) 87%);
-    background: -webkit-linear-gradient(0deg, rgba(0, 0, 0, 1) 27%, rgba(2, 30, 93, 1) 87%);
-    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 27%, rgba(2, 30, 93, 1) 87%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000", endColorstr="#021e5d", GradientType=1);
-
-  }
-
-  .clock {
-    font-size: 18px;
-  }
-</style>
-
-<body class="w3-black">
-
-  <!-- Icon Bar (Sidebar - hidden on small screens) -->
-
-  <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
-    <p class="clock" style="margin-top: 30px; margin-bottom: 30px; color:#0339ad;">Loading...</p>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-black w3-hover-0339ad">
-      <i class="fa fa-home w3-xxlarge"></i>
-      <p>HOME</p>
-    </a>
-    <a href="#about" class="w3-bar-item w3-button w3-padding-large w3-hover-0339ad">
-      <i class="fa fa-user w3-xxlarge"></i>
-      <p>ABOUT</p>
-    </a>
-    <a href="#projects" class="w3-bar-item w3-button w3-padding-large w3-hover-0339ad">
-      <i class="fa fa-book w3-xxlarge"></i>
-      <p>PROJECTS</p>
-    </a>
-    <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hover-0339ad">
-      <i class="fa fa-phone w3-xxlarge"></i>
-      <p>CONTACT</p>
-    </a>
-  </nav>
-  <!-- clock -->
-  <script>
-    function updateClock() {
-      const now = new Date();
-      let hours = now.getHours();
-      const minutes = String(now.getMinutes()).padStart(2, '0');
-      let amOrPm = hours >= 12 ? 'PM' : 'AM';
-      hours = hours % 12 || 12;
-      const timeString = `${hours}:${minutes} ${amOrPm}`;
-      document.querySelector('.clock').textContent = timeString;
-    }
-
-    // Call the updateClock function every minute (60000 milliseconds)
-    setInterval(updateClock, 60000);
-
-    // Update the clock immediately after the page loads
-    updateClock();
-  </script>
-
-  <!-- Navbar on small screens (Hidden on medium and large screens) -->
-  <div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
-    <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
-      <a href="#home" class="w3-bar-item w3-button" style="width:25% !important">HOME</a>
-      <a href="#about" class="w3-bar-item w3-button" style="width:25% !important">ABOUT</a>
-      <a href="#projects" class="w3-bar-item w3-button" style="width:25% !important">PROJECTS</a>
-      <a href="#contact" class="w3-bar-item w3-button" style="width:25% !important">CONTACT</a>
+      <nav id="navbar" class="nav-menu navbar">
+        <ul>
+          <li><a href="#hero" class="nav-link scrollto"><i class="bx bx-home"></i> <span>Home</span></a></li>
+          <li><a href="#about" class="nav-link scrollto"><i class="bx bx-book"></i> <span>About Me</span></a></li>
+          <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i>
+              <span>Projects</span></a></li>        
+        </ul>
+      </nav><!-- .nav-menu -->
     </div>
-  </div>
+    <li class="nav-item" style="margin-left: 20px; margin-top: 18rem;">
+      <div class="social-icons">
+        <a href="https://twitter.com/abrart1075" class="nav-link"><i class="fa fa-twitter w3-xlarge w3-hover-opacity" style="color:#ff9d00;"></i></a>
+        <a href="https://www.linkedin.com/in/abrar-tarafder/" class="nav-link"><i class="fa fa-linkedin  w3-xlarge w3-hover-opacity" style="color:#ff9d00;"></i></a>
+        <a href="mailto:abrart1075@gmail.com" class="nav-link"><i class="fa fa-envelope w3-xlarge w3-hover-opacity" style="color:#ff9d00;"></i></a>
+      </div>
+    </li>
+  </header><!-- End Header -->
 
-  <!-- Page Content -->
-  <div class="w3-padding-large" id="main">
-
-    <!-- Header/Home -->
-    <header class="w3-container w3-padding-32 w3-center" id="home">
-      <h1 class="w3-jumbo"><span class="w3-hide-small">Hi, I'm</span> Abrar Jawad Tarafder.</h1>
-      <p>A Computer Science Student in Toronto, Ontario</p>
-      <img src="assets/img/Toronto Skyline.jpg" class="w3-image" width="992" height="1508">
-    </header>
-
-    <!-- About Section -->
-    <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="about">
-      <h2 class="w3-text-white">About Me</h2>
-      <hr style="width:200px; color: white;" class="w3">
-      <p style="color: white">
-        Hello, I'm Abrar Jawad Tarafder, a Computer Science student studying at York University. I have made this short
-        portfolio to provide easy access to my Resume, my personal website, my wix website and my github for projects!
-        Feel free to check them out! Also if you'd like to gain more insight into the different types of projects I am
-        working on, feel free to check out the Project Summary section! Feel free to contact me for any inquiries /
-        questions!
-      </p>
-
-
-      <button style="width:210px ;background-color: blueviolet;"
-        class="w3-button w3-light-grey w3-padding-large w3-section">
-        <a href="assets/img/resume/Resume_Abrar_JT.pdf" style="color: black; text-decoration: none;">
-          <i class="fa fa-download"></i> Download Resume
-        </a>
-      </button>
-
-      <button class="w3-button w3-light-grey w3-padding-large w3-section">
-        <a href="https://abrartarafder.github.io/" style="color: black; text-decoration: none;">
-          <i class="fa fa-globe"></i> Personal Website
-        </a>
-      </button>
-
-      <button class="w3-button w3-light-grey w3-padding-large w3-section">
-        <a href="https://abrart1075.wixsite.com/my-site" style="color: black; text-decoration: none;">
-          <i class="fa fa-globe"></i> Personal Wix Website
-        </a>
-      </button>
-
-      <button class="w3-button w3-light-grey w3-padding-small w3-section">
-        <a href="https://github.com/abrartarafder" style="color: black; text-decoration: none; font-size: 26px;">
-          <i class="fa fa-github"></i> <a style="font-size: 15px;">My Github</a>
-        </a>
-      </button>
-
-      <button class="w3-button w3-light-grey w3-padding-large w3-section">
-        <a href="https://abrartarafder.github.io/abrar-cv-expanded/" style="color: black; text-decoration: none;">
-          <i class="fa fa-globe"></i> CV Website
-        </a>
-      </button>
-
-      <!-- End About Section -->
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
+    <div class="hero-container" data-aos="fade-in">
+      <h1>Abrar's Portfolio</h1>
+      <p>Insight into my <span class="typed" data-typed-items="Projects, Passion Projects, Areas of Interests"></span></p>
     </div>
+  </section><!-- End Hero -->
 
-    <!-- Project Section -->
-    <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="projects">
-      <h2 class="w3-text-white">Project Summary</h2>
-      <hr style="width:200px; color: white;" class="w3">
+  <main id="main">
 
-      <h3 class="w3-text-white">Edify</h2>
-        <p style="color: white">
-          In order to solve UN Sustainability Goal regarding Quality Education during UNHack 2023 (York University's very own Hackathon), Edify was created by my team and I. This project involves
-          an AI-driven online learning platform tailored to individual learning styles (audio, visual, read/write and
-          hands on) ensuring privacy and safety for children. This innovative tool personalizes education, provides
-          predictive analytics, and encourages collaboration and hands-on learning through workshops. The team, with
-          diverse expertise in web design, graphic design, game development, web development, AI, and machine learning,
-          aimed to create an inclusive and effective learning environment for all students.
-          <br>
-          <br>
-          <strong style="color: rgb(138, 202, 245);">Achievements: </strong>
-          <br>
-          <br>
-          <span style="color: rgb(138, 202, 245);">Top 8 Project out of over 150 teams, Cohort Winner, Voted People's
-            Choice Award Winner out of over 150 teams, Offered to turn the idea into startup. </span>
-        </p>
-        <button class="w3-button w3-light-grey w3-padding-large w3-section">
-          <a href="https://docs.google.com/presentation/d/1Q-2nCwOQs8LmzRzg-wb7lekl-8Dlhhd9M0-sng1bTQs/edit#slide=id.p" style="color: black; text-decoration: none;">
-            Edify Pitch
-          </a>
-        </button>
-        <button class="w3-button w3-light-grey w3-padding-large w3-section">
-          <a href="https://edifylearning.github.io/EdifyWebsite/" style="color: black; text-decoration: none;">
-            Edify Website
-          </a>
-        </button>
-        <button class="w3-button w3-light-grey w3-padding-large w3-section">
-          <a href="https://linktr.ee/learnwithedify" style="color: black; text-decoration: none;">
-            Edify Linktree
-          </a>
-        </button>
-        <h3 class="w3-text-white">The Notes Website</h2>
-          <p style="color: white">
-            My friends and I are building (still currently building) this website to access meticulously crafted notes that condense complex topics into easy-to-understand summaries. Our contributors are passionate about simplifying learning materials to enhance your comprehension and retention.
-            to help prepare for exams confidently with our collection of exam notes designed to cover essential concepts, key theories, and potential exam questions.
-          </p>
-          <button class="w3-button w3-light-grey w3-padding-large w3-section">
-            <a href="https://abrartarafder.github.io/The-Notes-App" style="color: black; text-decoration: none;">
-              Notes Website (still under development)
-            </a>
-          </button>
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container">
 
-        <h3 class="w3-text-white">Data Analytics and Databases</h2>
-          <p style="color: white">
-            I completed Google's Data Analytics course with Coursera and have completed a project that includes Excel,
-            SQL
-            and other tools. I am planning on enrolling in other certifications courses as well. Check it out on my
-            Github!
-          </p>
-          <h3 class="w3-text-white">Game Development</h2>
-            <p style="color: white">
-              I have been working on making some 2d games as a hobby and am just getting started with some basic games
-              and
-              more. Check it out on my Github!
-            </p>
-            <h3 class="w3-text-white">Frontend, Web Development and Design</h2>
-              <p style="color: white">
-                I am currently learning frontend web development and design since my current job requires me to have
-                that skill and have made this portfolio as well as my personal website. The wix website that I made was
-                part of web-design as well as some Figma work. See my websites links above!
-              </p>
-              <button class="w3-button w3-light-grey w3-padding-large w3-section">
-                <a href="https://abrartarafder.github.io/abrar-cv-expanded/"
-                  style="color: black; text-decoration: none;">
-                  My CV Website
-                </a>
-              </button>
-              <h3 class="w3-text-white">Hackathons</h2>
-                <p style="color: white">
-                  I have attended <span style="color: rgb(138, 202, 245);">5</span> hackathons
-                  <span style="color: rgb(138, 202, 245);">(E2E Encrypted Everything @Hack '21, CalHacks 8.0 '21,
-                    McHacks
-                    9.0 '22, Jarvis Ambassador Hackathon '23, UNHack '23)</span>
-                  <span style="color: white;"> to date and have won 1 hackathon (Jarvis Ambassador Hackathon) where I
-                    worked with some amazing people to create cool projects. Check them out!</span>
-                </p>
+        <div class="section-title">
+          <h2>About Me</h2>
+          <p>
+            Hello, I'm Abrar Jawad Tarafder, a Computer Science student studying at York University. I have created this short portfolio to provide easy access to my resume, personal website, Wix website, and GitHub for projects! Feel free to check them out! Additionally, if you'd like to gain more insight into the different types of projects I am working on, feel free to explore the Project Summary section! Don't hesitate to contact me for any inquiries or questions!
+            <br>
+            <br>
+          <div class="col">
+            <div class="col-2">
+              <a href="../assets/img/Resume_Abrar_JT.pdf" download="resume.pdf">
+                <button type="button" style="margin-bottom: 10px; width: 300px;" class="btn btn-dark">Download
+                  Resume</button>
+              </a>
+            </div>
+            <div class="col-2">
+              <a href="https://abrartarafder.github.io/" download="resume.pdf">
+                <button type="button" style="margin-bottom: 10px; width: 300px;" class="btn btn-dark">Personal
+                  Website</button>
+              </a>
+            </div>
+            <div class="col-2">
+              <a href="https://abrart1075.wixsite.com/my-site" download="resume.pdf">
+                <button type="button" style="margin-bottom: 10px; width: 300px;" class="btn btn-dark">Personal
+                 Wix Website</button>
+              </a>
+            </div>
+            <div class="col-2">
+              <a href="https://github.com/abrartarafder" download="resume.pdf">
+                <button type="button" style="margin-bottom: 10px; width: 300px;" class="btn btn-dark">
+                 Github</button>
+              </a>
+            </div>
+            <div class="col-2">
+              <a href="https://abrartarafder.github.io/abrar-cv-expanded/" download="resume.pdf">
+                <button type="button" style="margin-bottom: 10px; width: 300px;" class="btn btn-dark">
+                 CV Website</button>
+              </a>
+            </div>
+          
+          </div>
+          
+          </div>
+          
+          </div>
 
 
-                </p>
-                <button class="w3-button w3-light-grey w3-padding-large w3-section">
-                  <a href="https://devpost.com/abrart1075?ref_content=user-portfolio&ref_feature=portfolio&ref_medium=global-nav"
-                    style="color: black; text-decoration: none;">
-                    Projects
-                  </a>
-                </button>
-                <h3 class="w3-text-white">Backend and MERN Stack (includes Beginner Projects)</h2>
-                  <p style="color: white">
-                    I have worked on some smaller beginner projects to learn new languages (ie -- calculators and such)
-                    and have also been trying to learn the MERN stack. Check them out on my Github!
-                  </p>
-                  <h3 class="w3-text-white">Marketing Certifications</h2>
-                    <p style="color: white">
-                      I worked as a digital marketer for a couple of months and I had gotten my role through some
-                      certifications that are up on my LinkedIn. I personally believe the more you learn, the better!
-                    </p>
-                    <h3 class="w3-text-white">Machine Learning and AI</h2>
-                      <p style="color: white">
-                        Will be working towards making some projects regarding this soon!
-                      </p>
-                      <br>
-                      <h3 class="w3-text-white">Bonus Passion Projects</h2>
-                        <h6 class="w3-text-white">Photo Album</h6>
-                        <p style="color: white">
-                          I love taking pictures as well as editing pictures taken by other people and as a passion
-                          project I am also currently working on trying to make an album for my photos!
-                        </p>
-                        <div id="carouselExampleIndicators" class="carousel slide">
-                          <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
-                              class="active" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                              aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                              aria-label="Slide 3"></button>
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
-                              aria-label="Slide 4"></button>
-
-                          </div>
-                          <div class="carousel-inner">
-                            <div class="carousel-item active">
-                              <img src="assets/img/city.jpg" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                              <img src="assets/img/railway.jpg" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                              <img src="assets/img/Toronto Skyline.jpg" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                              <img src="assets/img/garden.jpg" class="d-block w-100" alt="...">
-                            </div>
-                          </div>
-                          <button class="carousel-control-prev" type="button"
-                            data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                          </button>
-                          <button class="carousel-control-next" type="button"
-                            data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                          </button>
-                        </div>
-                        <br>
-                        <h6 class="w3-text-white">Simple Calorie Calculator</h6>
-                        <p style="color: white">
-                          Passionate about fitness so I decided to make this simple website that tracks calories,
-                          answers
-                          some common fitness questions and provides sample workouts based on muscle groups!
-                        </p>
-                        <button class="w3-button w3-light-grey w3-padding-large w3-section">
-                          <a href="https://abrartarafder.github.io/calorie-calculator/"
-                            style="color: black; text-decoration: none;">
-                            Calorie Calculator
-                          </a>
-                        </button>
-                        <br>
-                        <h6 class="w3-text-white">One Piece Beginners Guide</h6>
-                        <p style="color: white">
-                          Decided to make a beginner's guide to one of the most famous anime's in the world, One Piece.
-                          Something I wish I read before starting the anime! (Follows the Calorie Calculator and
-                          Portfolio
-                          Website Template)
-                        </p>
-                        <button class="w3-button w3-light-grey w3-padding-large w3-section">
-                          <a href="https://abrartarafder.github.io/one-piece/"
-                            style="color: black; text-decoration: none;">
-                            One Piece Guide
-                          </a>
-                        </button>
+        </div>
+      </div>
+      </div>
+    </section><!-- End About Section -->
 
 
-                        <!-- End Projecy Section -->
-    </div>
+    <!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio section-bg">
+      <div class="container">
 
-    <div class="w3-padding-64 w3-content w3-text-grey" id="contact">
-      <h2 class="w3-text-light-grey">Contact Me</h2>
-      <hr style="width:200px" class="w3-opacity">
+        <div class="section-title">
+          <h2>Projects Summary</h2>
+        </div>
 
-      <div class="w3-section">
-        <a href="https://twitter.com/abrart1075"><i class="fa fa-twitter w3-xxlarge w3-hover-opacity"
-            style="margin-right: 10px; color:#0339ad;"></i></a>
+        <div class="row" data-aos="fade-up">
+          <div class="col-lg-12 d-flex justify-content-center">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">All</li>
+              <li data-filter=".filter-one">Game Development</li>
+              <li data-filter=".filter-two">Hackathons</li>
+              <li data-filter=".filter-three">Passion Projects</li>
+              <li data-filter=".filter-four">Data Analytics</li>
+              <li data-filter=".filter-five">Web Development</li>
+              <li data-filter=".filter-seven">AI + ML</li>
+            </ul>
+          </div>
+        </div>
 
-        <a href="https://www.linkedin.com/in/abrar-tarafder/"><i class="fa fa-linkedin  w3-xxlarge w3-hover-opacity"
-            style="margin-right: 10px; color:#0339ad;"></i></a>
+        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
 
-        <a href="mailto:abrart1075@gmail.com"><i class="fa  w3-xxlarge fa-envelope w3-hover-opacity"
-            style="margin-right: 10px; color:#0339ad;"></i></a>
-      </div><br>
+          <div class="col-lg-4 col-md-6 portfolio-item filter-two">
+            <div class="portfolio-wrap">
+              <img src="assets/img/edify.png" class="img-fluid" alt="">
+              <div class="portfolio-links">
+                <a href="assets/img/edifydesc.png" data-gallery="portfolioGallery" class="portfolio-lightbox"
+                  title=""><i class="bx bx-plus"></i></a>
+                <a href="https://linktr.ee/learnwithedify" title="More Details"><i class="bx bx-link"></i></a>
+              </div>
+            </div>
+          </div>
 
+          <div class="col-lg-4 col-md-6 portfolio-item filter-three">
+            <div class="portfolio-wrap">
+              <img src="assets/img/notes.png" class="img-fluid" alt="">
+              <div class="portfolio-links">
+                <a href="assets/img/notes_desc.png" data-gallery="portfolioGallery" class="portfolio-lightbox"
+                  title=""><i class="bx bx-plus"></i></a>
+                <a href="https://abrartarafder.github.io/The-Notes-App" title="More Details"><i class="bx bx-link"></i></a>
+              </div>
+            </div>
+          </div>
 
+          <div class="col-lg-4 col-md-6 portfolio-item filter-four">
+            <div class="portfolio-wrap">
+              <img src="assets/img/da.png" class="img-fluid" alt="">
+              <div class="portfolio-links">
+                <a href="assets/img/dadesc.png" data-gallery="portfolioGallery" class="portfolio-lightbox"
+                  title=""><i class="bx bx-plus"></i></a>
+                <a href="https://docs.google.com/presentation/d/1w72tFtqQIUHG5KSLIH_DBT07t3_pwRnN-tJ7Zmjpxf4/edit?usp=sharing" title="More Details"><i class="bx bx-link"></i></a>
+              </div>
+            </div>
+          </div>
 
-    </div>
+          <div class="col-lg-4 col-md-6 portfolio-item filter-one filter-three">
+            <div class="portfolio-wrap">
+              <img src="assets/img/gd.png" class="img-fluid" alt="">
+              <div class="portfolio-links">
+                <a href="assets/img/gdesc.png" data-gallery="portfolioGallery" class="portfolio-lightbox"
+                  title=""><i class="bx bx-plus"></i></a>
+                <a href="https://github.com/abrartarafder/pygame----short-games" title="More Details"><i class="bx bx-link"></i></a>
+              </div>
+            </div>
+          </div>
 
+          <div class="col-lg-4 col-md-6 portfolio-item filter-three filter-five">
+            <div class="portfolio-wrap">
+              <img src="assets/img/wd.png" class="img-fluid" alt="">
+              <div class="portfolio-links">
+                <a href="assets/img/wdesc.png" data-gallery="portfolioGallery" class="portfolio-lightbox"
+                  title=""><i class="bx bx-plus"></i></a>
+                <a href="https://abrartarafder.github.io/abrar-cv-expanded/" title="More Details"><i class="bx bx-link"></i></a>
+              </div>
+            </div>
+          </div>
 
+          <div class="col-lg-4 col-md-6 portfolio-item filter-two">
+            <div class="portfolio-wrap">
+              <img src="assets/img/hc.png" class="img-fluid" alt="">
+              <div class="portfolio-links">
+                <a href="assets/img/hcdes.png" data-gallery="portfolioGallery" class="portfolio-lightbox"
+                  title=""><i class="bx bx-plus"></i></a>
+                <a href="https://devpost.com/abrart1075?ref_content=user-portfolio&ref_feature=portfolio&ref_medium=global-nav" title="More Details"><i class="bx bx-link"></i></a>
+              </div>
+            </div>
+          </div>
 
+          <div class="col-lg-4 col-md-6 portfolio-item filter-three">
+            <div class="portfolio-wrap">
+              <img src="assets/img/bcdes.png" class="img-fluid" alt="">
+              <div class="portfolio-links">
+                <a href="assets/img/bc.png" data-gallery="portfolioGallery" class="portfolio-lightbox"
+                  title=""><i class="bx bx-plus"></i></a>
+                <a href="https://github.com/abrartarafder" title="More Details"><i class="bx bx-link"></i></a>
+              </div>
+            </div>
+          </div>
 
+          <div class="col-lg-4 col-md-6 portfolio-item filter-three">
+            <div class="portfolio-wrap">
+              <img src="assets/img/mc.png" class="img-fluid" alt="">
+              <div class="portfolio-links">
+                <a href="assets/img/mcdes.png" data-gallery="portfolioGallery" class="portfolio-lightbox"
+                  title=""><i class="bx bx-plus"></i></a>
+                <a href="https://www.linkedin.com/in/abrar-tarafder/" title="More Details"><i class="bx bx-link"></i></a>
+              </div>
+            </div>
+          </div>
 
-    <!-- Footer -->
-    <footer>
+          <div class="col-lg-4 col-md-6 portfolio-item filter-seven filter-three">
+            <div class="portfolio-wrap">
+              <img src="assets/img/ml.png" class="img-fluid" alt="">
+              <div class="portfolio-links">
+                <a href="assets/img/mldes.png" data-gallery="portfolioGallery" class="portfolio-lightbox"
+                  title=""><i class="bx bx-plus"></i></a>
+                <a href="https://www.linkedin.com/in/abrar-tarafder/" title="More Details"><i class="bx bx-link"></i></a>
+              </div>
+            </div>
+          </div>
 
-      <!-- End footer -->
-    </footer>
-    <!-- END PAGE CONTENT -->
-  </div>
+          <div class="col-lg-4 col-md-6 portfolio-item filter-three">
+            <div class="portfolio-wrap">
+              <img src="assets/img/picalb.png" class="img-fluid" alt="">
+              <div class="portfolio-links">
+                <a href="assets/img/picdes.png" data-gallery="portfolioGallery" class="portfolio-lightbox"
+                  title=""><i class="bx bx-plus"></i></a>
+                <a href="" title="More Details"><i class="bx bx-link"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-three">
+            <div class="portfolio-wrap">
+              <img src="assets/img/op.png" class="img-fluid" alt="">
+              <div class="portfolio-links">
+                <a href="assets/img/opdes.png" data-gallery="portfolioGallery" class="portfolio-lightbox"
+                  title=""><i class="bx bx-plus"></i></a>
+                <a href="https://abrartarafder.github.io/one-piece/" title="More Details"><i class="bx bx-link"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-three">
+            <div class="portfolio-wrap">
+              <img src="assets/img/gym.png" class="img-fluid" alt="">
+              <div class="portfolio-links">
+                <a href="assets/img/gymdes.png" data-gallery="portfolioGallery" class="portfolio-lightbox"
+                  title=""><i class="bx bx-plus"></i></a>
+                <a href="https://abrartarafder.github.io/calorie-calculator/" title="More Details"><i class="bx bx-link"></i></a>
+              </div>
+            </div>
+          </div>
+
+          
+
+          
+
+        </div>
+
+      </div>
+    </section><!-- End Portfolio Section -->
+  
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+  </footer><!-- End  Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/typed.js/typed.umd.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
 
 </body>
 
