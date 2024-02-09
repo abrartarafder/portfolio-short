@@ -600,6 +600,11 @@ section {
   .breadcrumbs ol li {
     display: inline-block;
   }
+
+  .social-icons {
+    display: inline;
+   
+  }
 }
 
 /*--------------------------------------------------------------
@@ -633,5 +638,9 @@ section {
     position: static;
     width: auto;
     padding-right: 20px 15px;
+  }
+  .social-icons {
+    display: inline;
+   
   }
 }
