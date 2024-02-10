@@ -18,10 +18,17 @@ a:hover {
   text-decoration: none;
 }
 
-.social-icons {
-  display: inline;
- 
+.separator {
+  border-top: 1px solid #ddd;
+  margin: 10px 0;
+  width: 250px;
 }
+.title {
+  color: #666;
+  font-weight: bold;
+}
+
+
 
 .social-icons .nav-link {
   padding: 0;
@@ -604,17 +611,7 @@ section {
   .breadcrumbs ol li {
     display: inline-block;
   }
-  .social-icons {
-    display: flex;
-    align-items: left !important; /* Align items vertically */
-  }
 
-
-.social-icons .nav-link {
-  text-align: left !important;
-  margin-bottom: 20px;
-  margin-left: 1rem !important;
-}
 
 
 }
