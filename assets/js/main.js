@@ -1,288 +1,200 @@
-/**
-* Template Name: iPortfolio
-* Updated: Jan 09 2024 with Bootstrap v5.3.2
-* Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-(function() {
+(() => {
   "use strict";
 
-  /**
-   * Easy selector helper function
-   */
-  const select = (el, all = false) => {
-    el = el.trim()
-    if (all) {
-      return [...document.querySelectorAll(el)]
-    } else {
-      return document.querySelector(el)
-    }
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const header = document.querySelector(".sidebar");
+  const menuToggle = document.querySelector(".mobile-nav-toggle");
+  const navigation = document.querySelector("#navigation-panel");
+  const navLinks = [...document.querySelectorAll(".nav-link")];
+
+  function closeMenu(returnFocus = false) {
+    header.classList.remove("menu-open");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Open navigation");
+    if (returnFocus) menuToggle.focus();
   }
-
-  /**
-   * Easy event listener function
-   */
-  const on = (type, el, listener, all = false) => {
-    let selectEl = select(el, all)
-    if (selectEl) {
-      if (all) {
-        selectEl.forEach(e => e.addEventListener(type, listener))
-      } else {
-        selectEl.addEventListener(type, listener)
-      }
-    }
-  }
-
-  /**
-   * Easy on scroll event listener 
-   */
-  const onscroll = (el, listener) => {
-    el.addEventListener('scroll', listener)
-  }
-
-  /**
-   * Navbar links active state on scroll
-   */
-  let navbarlinks = select('#navbar .scrollto', true)
-  const navbarlinksActive = () => {
-    let position = window.scrollY + 200
-    navbarlinks.forEach(navbarlink => {
-      if (!navbarlink.hash) return
-      let section = select(navbarlink.hash)
-      if (!section) return
-      if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
-        navbarlink.classList.add('active')
-      } else {
-        navbarlink.classList.remove('active')
-      }
-    })
-  }
-  window.addEventListener('load', navbarlinksActive)
-  onscroll(document, navbarlinksActive)
-
-  /**
-   * Scrolls to an element with header offset
-   */
-  const scrollto = (el) => {
-    let elementPos = select(el).offsetTop
-    window.scrollTo({
-      top: elementPos,
-      behavior: 'smooth'
-    })
-  }
-
-  /**
-   * Back to top button
-   */
-  let backtotop = select('.back-to-top')
-  if (backtotop) {
-    const toggleBacktotop = () => {
-      if (window.scrollY > 100) {
-        backtotop.classList.add('active')
-      } else {
-        backtotop.classList.remove('active')
-      }
-    }
-    window.addEventListener('load', toggleBacktotop)
-    onscroll(document, toggleBacktotop)
-  }
-
-  /**
-   * Mobile nav toggle
-   */
-  on('click', '.mobile-nav-toggle', function(e) {
-    select('body').classList.toggle('mobile-nav-active')
-    this.classList.toggle('bi-list')
-    this.classList.toggle('bi-x')
-  })
-
-  /**
-   * Scrool with ofset on links with a class name .scrollto
-   */
-  on('click', '.scrollto', function(e) {
-    if (select(this.hash)) {
-      e.preventDefault()
-
-      let body = select('body')
-      if (body.classList.contains('mobile-nav-active')) {
-        body.classList.remove('mobile-nav-active')
-        let navbarToggle = select('.mobile-nav-toggle')
-        navbarToggle.classList.toggle('bi-list')
-        navbarToggle.classList.toggle('bi-x')
-      }
-      scrollto(this.hash)
-    }
-  }, true)
-
-  /**
-   * Scroll with ofset on page load with hash links in the url
-   */
-  window.addEventListener('load', () => {
-    if (window.location.hash) {
-      if (select(window.location.hash)) {
-        scrollto(window.location.hash)
-      }
-    }
+  menuToggle.addEventListener("click", () => {
+    const isOpen = header.classList.toggle("menu-open");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+    menuToggle.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
   });
+  navigation.addEventListener("click", (event) => {
+    if (event.target.closest("a")) closeMenu();
+  });
+  document.addEventListener("click", (event) => {
+    if (!header.contains(event.target)) closeMenu();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && header.classList.contains("menu-open")) closeMenu(true);
+  });
+  header.addEventListener("focusout", () => {
+    requestAnimationFrame(() => {
+      if (!header.contains(document.activeElement)) closeMenu();
+    });
+  });
+  window.matchMedia("(min-width: 761px)").addEventListener("change", () => closeMenu());
 
-  /**
-   * Hero type effect
-   */
-  const typed = select('.typed')
-  if (typed) {
-    let typed_strings = typed.getAttribute('data-typed-items')
-    typed_strings = typed_strings.split(',')
-    new Typed('.typed', {
-      strings: typed_strings,
-      loop: true,
-      typeSpeed: 100,
-      backSpeed: 50,
-      backDelay: 2000
+  // Highlight the section at the reader's current position, including deep links.
+  const sections = navLinks.map((link) => document.querySelector(link.hash));
+  let scrollScheduled = false;
+  function updateNavigation() {
+    const position = window.scrollY + (window.innerWidth <= 760 ? 120 : 180);
+    let current = sections[0];
+    for (const section of sections) {
+      if (section.offsetTop <= position) current = section;
+    }
+    navLinks.forEach((link) => {
+      const active = link.hash === `#${current.id}`;
+      link.classList.toggle("active", active);
+      if (active) link.setAttribute("aria-current", "location");
+      else link.removeAttribute("aria-current");
+    });
+    scrollScheduled = false;
+  }
+  window.addEventListener("scroll", () => {
+    if (!scrollScheduled) {
+      scrollScheduled = true;
+      requestAnimationFrame(updateNavigation);
+    }
+  }, { passive: true });
+  window.addEventListener("resize", updateNavigation);
+  updateNavigation();
+
+  const clock = document.querySelector("#clock");
+  const torontoTime = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/Toronto", hour: "2-digit", minute: "2-digit", hour12: true,
+  });
+  function updateClock() {
+    const now = new Date();
+    clock.textContent = torontoTime.format(now).toUpperCase();
+    clock.dateTime = now.toISOString();
+  }
+  updateClock();
+  setInterval(updateClock, 30000);
+  document.querySelector("#year").textContent = new Date().getFullYear();
+
+  // Only opt into reveal effects when the browser can observe them.
+  if ("IntersectionObserver" in window && !reducedMotion.matches) {
+    document.body.classList.add("motion-ready");
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        revealObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.08, rootMargin: "0px 0px 24px 0px" });
+    document.querySelectorAll(".reveal").forEach((element) => revealObserver.observe(element));
+    reducedMotion.addEventListener("change", () => {
+      if (reducedMotion.matches) {
+        document.body.classList.remove("motion-ready");
+        revealObserver.disconnect();
+      }
     });
   }
 
-  /**
-   * Skills animation
-   */
-  let skilsContent = select('.skills-content');
-  if (skilsContent) {
-    new Waypoint({
-      element: skilsContent,
-      offset: '80%',
-      handler: function(direction) {
-        let progress = select('.progress .progress-bar', true);
-        progress.forEach((el) => {
-          el.style.width = el.getAttribute('aria-valuenow') + '%'
-        });
-      }
-    })
+  const typedWord = document.querySelector(".typed-word");
+  const words = ["projects.", "interests.", "creativity."];
+  let wordIndex = 0;
+  let characterIndex = words[0].length;
+  let deleting = true;
+  let typeTimer;
+  function typeNextCharacter() {
+    if (reducedMotion.matches || document.hidden) return;
+    const word = words[wordIndex];
+    characterIndex += deleting ? -1 : 1;
+    typedWord.textContent = word.slice(0, characterIndex);
+    let delay = deleting ? 48 : 95;
+    if (characterIndex === 0) {
+      deleting = false;
+      wordIndex = (wordIndex + 1) % words.length;
+      delay = 260;
+    } else if (characterIndex === word.length && !deleting) {
+      deleting = true;
+      delay = 2600;
+    }
+    typeTimer = setTimeout(typeNextCharacter, delay);
   }
+  if (!reducedMotion.matches) typeTimer = setTimeout(typeNextCharacter, 3000);
+  reducedMotion.addEventListener("change", () => {
+    clearTimeout(typeTimer);
+    typedWord.textContent = words[0];
+    wordIndex = 0;
+    characterIndex = words[0].length;
+    deleting = true;
+    if (!reducedMotion.matches) typeTimer = setTimeout(typeNextCharacter, 3000);
+  });
+  document.addEventListener("visibilitychange", () => {
+    clearTimeout(typeTimer);
+    if (!document.hidden && !reducedMotion.matches) typeTimer = setTimeout(typeNextCharacter, 1500);
+  });
 
-  /**
-   * Porfolio isotope and filter
-   */
-  window.addEventListener('load', () => {
-    let portfolioContainer = select('.portfolio-container');
-    if (portfolioContainer) {
-      let portfolioIsotope = new Isotope(portfolioContainer, {
-        itemSelector: '.portfolio-item'
+  const filterButtons = [...document.querySelectorAll(".filter-button")];
+  const cards = [...document.querySelectorAll(".project-card")];
+  const filterStatus = document.querySelector("#filter-status");
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const filter = button.dataset.filter;
+      let visibleCount = 0;
+      filterButtons.forEach((item) => {
+        const active = item === button;
+        item.classList.toggle("active", active);
+        item.setAttribute("aria-pressed", String(active));
       });
-
-      let portfolioFilters = select('#portfolio-flters li', true);
-
-      on('click', '#portfolio-flters li', function(e) {
-        e.preventDefault();
-        portfolioFilters.forEach(function(el) {
-          el.classList.remove('filter-active');
-        });
-        this.classList.add('filter-active');
-
-        portfolioIsotope.arrange({
-          filter: this.getAttribute('data-filter')
-        });
-        portfolioIsotope.on('arrangeComplete', function() {
-          AOS.refresh()
-        });
-      }, true);
-    }
-
+      cards.forEach((card) => {
+        const visible = filter === "all" || card.dataset.categories.split(" ").includes(filter);
+        card.hidden = !visible;
+        card.classList.remove("filter-enter");
+        if (visible) {
+          card.classList.add("is-visible");
+          card.style.animationDelay = `${Math.min(visibleCount, 5) * 35}ms`;
+          visibleCount++;
+        }
+      });
+      requestAnimationFrame(() => {
+        cards.filter((card) => !card.hidden).forEach((card) => card.classList.add("filter-enter"));
+      });
+      filterStatus.textContent = `Showing ${visibleCount} ${visibleCount === 1 ? "project" : "projects"}${filter === "all" ? "." : ` in ${button.textContent.trim()}.`}`;
+    });
   });
 
-  /**
-   * Initiate portfolio lightbox 
-   */
-  const portfolioLightbox = GLightbox({
-    selector: '.portfolio-lightbox'
+  const projectDescriptions = {
+    edify: { title: "Edify", description: "An AI-driven learning platform built with my team at UNHack 2023, tailored to different learning styles. Our project placed in the top 8 of over 150 teams, won our cohort, and received the People's Choice Award.", original: "edifydesc.png" },
+    notes: { title: "The Notes Website", description: "A collaborative notes website I started with friends, designed to make complex topics easier to understand. The idea is simple: thoughtful summaries, essential concepts, and clearer study materials.", original: "notes_desc.png" },
+    data: { title: "Data Analytics", description: "A project developed through Google's Data Analytics course on Coursera, exploring how Excel, SQL, and other analysis tools can turn raw data into useful insights.", original: "dadesc.png" },
+    games: { title: "Game Development", description: "Small 2D games made as a hobby and a way to explore game development. A collection of experiments in playful programming, with more to learn and build along the way.", original: "gdesc.png" },
+    web: { title: "Web Development", description: "My exploration of frontend development and web design, including this portfolio, my personal websites, and an expanded CV. Each site is another opportunity to learn through making.", original: "wdesc.png" },
+    hackathons: { title: "Hackathons", description: "Projects and collaborations from E2E Encrypted Everything @Hack, CalHacks, McHacks, the Jarvis Ambassador Hackathon, and UNHack. A chance to meet people, try ideas, and create something together under a deadline.", original: "hcdes.png" },
+    experiments: { title: "Coding Projects", description: "Smaller projects built to learn new languages and ideas, from calculators to exploring the MERN stack. A growing collection of the little things that help me become a better builder.", original: "bc.png" },
+    marketing: { title: "Digital Marketing", description: "An interest that took me beyond code and into digital marketing. My experience includes a digital marketing role and certifications, with more details on LinkedIn.", original: "mcdes.png" },
+    ai: { title: "AI & Machine Learning", description: "A space for my interest in artificial intelligence and machine learning. This part of my portfolio captures an area I want to keep exploring through projects and research.", original: "mldes.png" },
+    photography: { title: "Photography", description: "A collection inspired by my love for taking and editing photographs. A small home for the moments and perspectives I want to capture and share.", original: "picdes.png" },
+    onepiece: { title: "A Guide to One Piece", description: "A beginner's guide to One Piece, created as the resource I wish I'd had before starting the anime. A personal project bringing a favourite interest to the web.", original: "opdes.png" },
+    fitness: { title: "Fitness & Calorie Calculator", description: "A website inspired by my interest in fitness, with a calorie calculator, answers to common fitness questions, and sample workouts organised by muscle group.", original: "gymdes.png" },
+  };
+  const dialog = document.querySelector("#project-dialog");
+  let dialogTrigger;
+  document.querySelectorAll(".project-details").forEach((button) => {
+    button.addEventListener("click", () => {
+      const project = projectDescriptions[button.dataset.project];
+      const card = button.closest(".project-card");
+      const image = card.querySelector("img");
+      document.querySelector("#dialog-title").textContent = project.title;
+      document.querySelector("#dialog-description").textContent = project.description;
+      document.querySelector("#dialog-category").textContent = card.querySelector(".project-category").textContent;
+      document.querySelector("#dialog-image").src = image.src;
+      document.querySelector("#dialog-image").alt = image.alt;
+      document.querySelector("#dialog-link").href = card.querySelector("h3 a").href;
+      document.querySelector("#dialog-original").href = `assets/img/${project.original}`;
+      dialogTrigger = button;
+      dialog.showModal();
+      dialog.scrollTop = 0;
+    });
   });
-
-  /**
-   * Portfolio details slider
-   */
-  new Swiper('.portfolio-details-slider', {
-    speed: 400,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    }
+  dialog.querySelector(".dialog-close").addEventListener("click", () => dialog.close());
+  dialog.addEventListener("click", (event) => {
+    if (event.target !== dialog) return;
+    const bounds = dialog.getBoundingClientRect();
+    if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) dialog.close();
   });
-
-  /**
-   * Testimonials slider
-   */
-  new Swiper('.testimonials-slider', {
-    speed: 600,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    slidesPerView: 'auto',
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    },
-    breakpoints: {
-      320: {
-        slidesPerView: 1,
-        spaceBetween: 20
-      },
-
-      1200: {
-        slidesPerView: 3,
-        spaceBetween: 20
-      }
-    }
-  });
-
-  /**
-   * Animation on scroll
-   */
-  window.addEventListener('load', () => {
-    AOS.init({
-      duration: 1000,
-      easing: 'ease-in-out',
-      once: true,
-      mirror: false
-    })
-  });
-
-  /**
-   * Initiate Pure Counter 
-   */
-  new PureCounter();
-
-  
-
-})()
-
-function updateClock() {
-  var now = new Date();
-  var hours = now.getHours();
-  var minutes = now.getMinutes();
-  var ampm = hours >= 12 ? 'PM' : 'AM';
-  hours = hours % 12;
-  hours = hours ? hours : 12; // Handle midnight (0 hours)
-  var timeString = pad(hours) + ":" + pad(minutes) + " " + ampm;
-  document.getElementById("clock").innerText = timeString;
-}
-
-function pad(number) {
-  if (number < 10) {
-    return "0" + number;
-  }
-  return number;
-}
-
-// Update the clock every second
-setInterval(updateClock, 1000);
-
-// Initial call to display the clock immediately
-updateClock();
+  dialog.addEventListener("close", () => dialogTrigger?.focus({ preventScroll: true }));
+})();
